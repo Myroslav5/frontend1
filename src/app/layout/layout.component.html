@@ -1,1 +1,24 @@
-<p>layout works!</p>
+<header class="main-header">
+  <div class="logo">
+    <h1>{{ appName }}</h1>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="#">Головна</a></li>
+      <li><a href="#">Смартфони</a></li>
+      <li><a href="#">Ноутбуки</a></li>
+      <li><a href="#">Аксесуари</a></li>
+    </ul>
+  </nav>
+  <div class="user-actions">
+    <button>Кошик 🛒</button>
+  </div>
+</header>
+
+<main class="content-container">
+  <ng-content></ng-content>
+</main>
+
+<footer class="main-footer">
+  <p>© 2025 {{ appName }}. Твій світ технологій.</p>
+</footer>
