@@ -1,0 +1,9 @@
+<div class="products-container">
+  <h2>Популярні товари</h2>
+  <div class="grid">
+    <app-item-card 
+      *ngFor="let item of products" 
+      [product]="item">
+    </app-item-card>
+  </div>
+</div>

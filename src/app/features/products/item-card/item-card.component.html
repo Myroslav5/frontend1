@@ -1,0 +1,30 @@
+<div class="card" [ngClass]="{'discounted': product.discount}"> 
+<div class="card-img-wrapper">
+    <img [src]="product.image" [alt]="product.name">
+    
+    <div *ngIf="product.discount" class="discount-badge">
+      -{{ product.discount }}%
+    </div>
+  </div>
+
+  <div class="card-body">
+    <h3>{{ product.name }}</h3>
+    
+    <div class="price-container">
+      <p class="price" [ngStyle]="{'color': product.discount ? '#e74c3c' : '#2c3e50'}">
+        {{ product.price }} грн
+      </p>
+      
+      <p *ngIf="product.discount" class="old-price">
+        {{ product.price * (100 + product.discount!) / 100 | number:'1.0-0' }} грн
+      </p>
+    </div>
+
+    <div class="status" 
+         [ngClass]="product.inStock ? 'in-stock' : 'out-of-stock'">
+      {{ product.inStock ? 'Є в наявності' : 'Немає в наявності' }}
+    </div>
+
+    <button [disabled]="!product.inStock">Купити</button>
+  </div>
+</div>
