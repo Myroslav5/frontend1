@@ -1,0 +1,25 @@
+<div class="products-container">
+  <h2>Популярні товари</h2>
+
+  <div class="search-bar">
+    <input 
+      type="text" 
+      placeholder="Введіть назву гаджета..." 
+      [(ngModel)]="searchQuery"
+      (ngModelChange)="onSearchChange()" 
+    >
+    <p>Ви шукаєте: <strong>{{ searchQuery }}</strong></p>
+  </div>
+
+  <div class="grid">
+    <app-item-card 
+      *ngFor="let item of products" 
+      [product]="item"
+      (itemClicked)="handleItemClick($event)">
+    </app-item-card>
+  </div>
+  
+  <div *ngIf="products.length === 0" class="no-results">
+    Товарів не знайдено 😞
+  </div>
+</div>
