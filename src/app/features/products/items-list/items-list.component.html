@@ -1,0 +1,11 @@
+<div class="grid">
+  <app-item-card 
+    *ngFor="let item of products$ | async" 
+    [product]="item"
+    (itemClicked)="handleItemClick($event)">
+  </app-item-card>
+</div>
+
+<div *ngIf="(products$ | async)?.length === 0" class="no-results">
+  Товарів не знайдено 😞
+</div>
