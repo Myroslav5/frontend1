@@ -1,12 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../../core/models/product.interface';
+<<<<<<< HEAD
+=======
+import { BehaviorSubject, Observable } from 'rxjs';
+>>>>>>> pr-06-rxjs-observables
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
+<<<<<<< HEAD
   private products: Product[] = [
  {
+=======
+  
+  private allProducts: Product[] = [
+    {
+>>>>>>> pr-06-rxjs-observables
       id: 1,
       name: 'iPhone 15 Pro',
       price: 45000,
@@ -38,9 +48,30 @@ export class ProductsService {
     }
   ];
 
+<<<<<<< HEAD
   constructor() { }
 
   getProducts(): Product[] {
     return this.products;
   }
 }
+=======
+  private productsSubject = new BehaviorSubject<Product[]>(this.allProducts);
+
+  constructor() { }
+
+  getProducts(): Observable<Product[]> {
+    return this.productsSubject.asObservable();
+  }
+
+  filterProducts(searchQuery: string): void {
+    const lowerQuery = searchQuery.toLowerCase();
+    
+    const filtered = this.allProducts.filter(product => 
+      product.name.toLowerCase().includes(lowerQuery)
+    );
+
+    this.productsSubject.next(filtered);
+  }
+}
+>>>>>>> pr-06-rxjs-observables

@@ -6,18 +6,20 @@
       type="text" 
       placeholder="Введіть назву гаджета..." 
       [(ngModel)]="searchQuery"
+      (ngModelChange)="onSearchChange()" 
     >
-    <p>Ви шукаєте: <strong>{{ searchQuery }}</strong></p> </div>
+    <p>Ви шукаєте: <strong>{{ searchQuery }}</strong></p>
+  </div>
 
   <div class="grid">
     <app-item-card 
-      *ngFor="let item of filteredProducts" 
+      *ngFor="let item of products" 
       [product]="item"
       (itemClicked)="handleItemClick($event)">
     </app-item-card>
   </div>
   
-  <div *ngIf="filteredProducts.length === 0" class="no-results">
+  <div *ngIf="products.length === 0" class="no-results">
     Товарів не знайдено 😞
   </div>
 </div>
