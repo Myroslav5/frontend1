@@ -1,32 +1,28 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ItemCardComponent } from '../item-card/item-card.component';
 import { Product } from '../../../core/models/product.interface';
 import { ProductsService } from '../../../core/services/products.service';
-import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-items-list',
   standalone: true,
-  imports: [CommonModule, ItemCardComponent, FormsModule],
+  imports: [CommonModule, ItemCardComponent, FormsModule, RouterModule],
   templateUrl: './items-list.component.html',
   styleUrl: './items-list.component.css'
 })
-export class ItemsListComponent implements OnInit, OnDestroy {
+export class ItemsListComponent implements OnInit {
   searchQuery: string = '';
-  products: Product[] = [];
   
-  private subscription: Subscription = new Subscription();
+  products$!: Observable<Product[]>; 
 
   constructor(private productsService: ProductsService) {}
 
   ngOnInit(): void {
-    const sub = this.productsService.getProducts().subscribe(data => {
-      this.products = data;
-    });
-
-    this.subscription.add(sub);
+    this.products$ = this.productsService.getProducts();
   }
 
   onSearchChange(): void {
@@ -34,10 +30,6 @@ export class ItemsListComponent implements OnInit, OnDestroy {
   }
 
   handleItemClick(product: Product) {
-    console.log('Вибрано товар:', product.name, '| Ціна:', product.price);
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    console.log('Клік:', product.name);
   }
 }

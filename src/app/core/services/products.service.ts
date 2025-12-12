@@ -14,7 +14,8 @@ export class ProductsService {
       price: 45000,
       image: 'https://content2.rozetka.com.ua/goods/images/big/592111676.jpg',
       inStock: true,
-      discount: 10
+      discount: 10,
+      description: 'Це новітній смартфон від Apple з титановим корпусом, потужним процесором A17 Pro та професійною системою камер.'
     },
     {
       id: 2,
@@ -56,5 +57,20 @@ export class ProductsService {
     );
 
     this.productsSubject.next(filtered);
+  }
+  getProductById(id: number): Product | undefined {
+    return this.allProducts.find(product => product.id === id);
+  }
+
+  addProduct(product: Product): void {
+    const newId = this.allProducts.length > 0 
+      ? Math.max(...this.allProducts.map(p => p.id)) + 1 
+      : 1;
+    
+    product.id = newId;
+
+    this.allProducts.push(product);
+
+    this.productsSubject.next(this.allProducts);
   }
 }

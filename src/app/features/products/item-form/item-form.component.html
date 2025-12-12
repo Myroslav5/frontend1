@@ -1,0 +1,47 @@
+<div class="form-container">
+  <h2>Додати новий товар</h2>
+
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    
+    <div class="form-group">
+      <label for="name">Назва товару</label>
+      <input id="name" type="text" formControlName="name">
+      
+      <div *ngIf="productForm.get('name')?.invalid && productForm.get('name')?.touched" class="error">
+        Назва обов'язкова (мін. 3 символи)
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="price">Ціна (грн)</label>
+      <input id="price" type="number" formControlName="price">
+      <div *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.touched" class="error">
+        Вкажіть коректну ціну (> 0)
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="image">URL зображення</label>
+      <input id="image" type="text" formControlName="image">
+      <div *ngIf="productForm.get('image')?.invalid && productForm.get('image')?.touched" class="error">
+        Посилання на фото обов'язкове
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="desc">Опис</label>
+      <textarea id="desc" formControlName="description"></textarea>
+    </div>
+
+    <div class="form-group checkbox-group">
+      <input id="stock" type="checkbox" formControlName="inStock">
+      <label for="stock">Є в наявності</label>
+    </div>
+
+    <div class="actions">
+      <a routerLink="/items" class="cancel-btn">Скасувати</a>
+      <button type="submit" [disabled]="productForm.invalid">Зберегти</button>
+    </div>
+
+  </form>
+</div>
