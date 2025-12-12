@@ -14,8 +14,6 @@ h2 {
   gap: 20px;
   max-width: 1200px;
   margin: 0 auto;
-<<<<<<< HEAD
-=======
 }
 
 .search-bar {
@@ -36,5 +34,4 @@ h2 {
   font-size: 1.2rem;
   color: #7f8c8d;
   margin-top: 20px;
->>>>>>> pr-04-component-interaction
 }

@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../../core/models/product.interface';
-import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
-  
-  private allProducts: Product[] = [
-    {
+  private products: Product[] = [
+ {
       id: 1,
       name: 'iPhone 15 Pro',
       price: 45000,
@@ -40,21 +38,9 @@ export class ProductsService {
     }
   ];
 
-  private productsSubject = new BehaviorSubject<Product[]>(this.allProducts);
-
   constructor() { }
 
-  getProducts(): Observable<Product[]> {
-    return this.productsSubject.asObservable();
-  }
-
-  filterProducts(searchQuery: string): void {
-    const lowerQuery = searchQuery.toLowerCase();
-    
-    const filtered = this.allProducts.filter(product => 
-      product.name.toLowerCase().includes(lowerQuery)
-    );
-
-    this.productsSubject.next(filtered);
+  getProducts(): Product[] {
+    return this.products;
   }
 }

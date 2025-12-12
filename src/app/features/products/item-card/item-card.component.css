@@ -110,8 +110,6 @@ button:disabled {
 .out-of-stock {
   color: #7f8c8d;
   font-style: italic;
-<<<<<<< HEAD
-=======
 }
 
 .actions {
@@ -126,5 +124,4 @@ button {
 
 .details-btn {
   background-color: #34495e;
->>>>>>> pr-04-component-interaction
 }

@@ -1,28 +1,18 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-<<<<<<< HEAD
-=======
 import { FormsModule } from '@angular/forms';
->>>>>>> pr-04-component-interaction
 import { ItemCardComponent } from '../item-card/item-card.component';
 import { Product } from '../../../core/models/product.interface';
 
 @Component({
   selector: 'app-items-list',
   standalone: true,
-<<<<<<< HEAD
-  imports: [CommonModule, ItemCardComponent],
-=======
   imports: [CommonModule, ItemCardComponent, FormsModule],
->>>>>>> pr-04-component-interaction
   templateUrl: './items-list.component.html',
   styleUrl: './items-list.component.css'
 })
 export class ItemsListComponent {
-<<<<<<< HEAD
-=======
   searchQuery: string = '';
->>>>>>> pr-04-component-interaction
   products: Product[] = [
     {
       id: 1,
@@ -55,8 +45,6 @@ export class ItemsListComponent {
       discount: 5
     }
   ];
-<<<<<<< HEAD
-=======
 
   get filteredProducts() {
     return this.products.filter(product => 
@@ -67,5 +55,4 @@ export class ItemsListComponent {
   handleItemClick(product: Product) {
     console.log('Вибрано товар:', product.name, '| Ціна:', product.price);
   }
->>>>>>> pr-04-component-interaction
 }
