@@ -1,5 +1,6 @@
-<div class="card" [ngClass]="{'discounted': product.discount}"> 
-<div class="card-img-wrapper">
+<div class="card" [ngClass]="{'discounted': product.discount}" appHighlight> 
+  
+  <div class="card-img-wrapper">
     <img [src]="product.image" [alt]="product.name">
     
     <div *ngIf="product.discount" class="discount-badge">
@@ -10,6 +11,7 @@
   <div class="card-body">
     <h3>{{ product.name }}</h3>
     
+    <p class="description">{{ product.description | shorten:30 }}</p>
     <div class="price-container">
       <p class="price" [ngStyle]="{'color': product.discount ? '#e74c3c' : '#2c3e50'}">
         {{ product.price }} грн
@@ -26,20 +28,7 @@
     </div>
 
     <button [disabled]="!product.inStock">Купити</button>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
-            <button class="details-btn" (click)="onItemClick()">Детальніше</button>
->>>>>>> pr-04-component-interaction
-=======
-
-            <button class="details-btn" (click)="onItemClick()">Детальніше</button>
->>>>>>> pr-05-services-di
-=======
-
-            <button class="details-btn" (click)="onItemClick()">Детальніше</button>
->>>>>>> pr-06-rxjs-observables
+        <a [routerLink]="['/items', product.id]" class="details-btn">Детальніше</a>
   </div>
 </div>

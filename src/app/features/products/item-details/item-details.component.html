@@ -1,0 +1,26 @@
+<div class="details-container" *ngIf="product; else notFound">
+  <div class="details-image">
+    <img [src]="product.image" [alt]="product.name">
+  </div>
+  
+  <div class="details-info">
+    <h2>{{ product.name }}</h2>
+    
+    <p class="price" [style.color]="product.discount ? '#e74c3c' : '#2c3e50'">
+      Ціна: {{ product.price }} грн
+    </p>
+
+    <div class="status" [class.in-stock]="product.inStock" [class.out-of-stock]="!product.inStock">
+      {{ product.inStock ? 'Є в наявності' : 'Немає в наявності' }}
+    </div>
+
+    <a routerLink="/items" class="back-btn">← Повернутися до списку</a>
+  </div>
+</div>
+
+<ng-template #notFound>
+  <div class="error">
+    <h2>Товар не знайдено 😕</h2>
+    <a routerLink="/items">На головну</a>
+  </div>
+</ng-template>
