@@ -1,77 +1,40 @@
 import { Injectable } from '@angular/core';
-import { Product } from '../../core/models/product.interface';
-<<<<<<< HEAD
-=======
-import { BehaviorSubject, Observable } from 'rxjs';
->>>>>>> pr-06-rxjs-observables
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, catchError, throwError } from 'rxjs';
+import { Product } from '../models/product.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
-<<<<<<< HEAD
-  private products: Product[] = [
- {
-=======
-  
-  private allProducts: Product[] = [
-    {
->>>>>>> pr-06-rxjs-observables
-      id: 1,
-      name: 'iPhone 15 Pro',
-      price: 45000,
-      image: 'https://content2.rozetka.com.ua/goods/images/big/592111676.jpg',
-      inStock: true,
-      discount: 10
-    },
-    {
-      id: 2,
-      name: 'MacBook Air M2',
-      price: 52000,
-      image: 'https://content.rozetka.com.ua/goods/images/big/486195990.jpg',
-      inStock: true
-    },
-    {
-      id: 3,
-      name: 'AirPods Pro 2',
-      price: 11000,
-      image: 'https://content.rozetka.com.ua/goods/images/big/594443650.jpg',
-      inStock: false
-    },
-    {
-      id: 4,
-      name: 'Sony PlayStation 5',
-      price: 24000,
-      image: 'https://content2.rozetka.com.ua/goods/images/big/529294298.jpg',
-      inStock: true,
-      discount: 5
-    }
-  ];
+  private url = 'products'; 
 
-<<<<<<< HEAD
-  constructor() { }
-
-  getProducts(): Product[] {
-    return this.products;
-  }
-}
-=======
-  private productsSubject = new BehaviorSubject<Product[]>(this.allProducts);
-
-  constructor() { }
+  constructor(private http: HttpClient) {}
 
   getProducts(): Observable<Product[]> {
-    return this.productsSubject.asObservable();
+    return this.http.get<Product[]>(this.url).pipe(
+      catchError(this.handleError)
+    );
   }
 
-  filterProducts(searchQuery: string): void {
-    const lowerQuery = searchQuery.toLowerCase();
-    
-    const filtered = this.allProducts.filter(product => 
-      product.name.toLowerCase().includes(lowerQuery)
+  getProductById(id: number): Observable<Product> {
+    return this.http.get<Product>(`${this.url}/${id}`).pipe(
+      catchError(this.handleError)
     );
+  }
 
-    this.productsSubject.next(filtered);
+  addProduct(product: Product): Observable<Product> {
+    return this.http.post<Product>(this.url, product).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    console.error('Сталася помилка API:', error);
+    return throwError(() => new Error('Щось пішло не так, спробуйте пізніше.'));
+  }
+
+  filterProducts(query: string): Observable<Product[]> {
+     return this.http.get<Product[]>(`${this.url}?q=${query}`);
   }
 }
->>>>>>> pr-06-rxjs-observables

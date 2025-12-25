@@ -1,0 +1,17 @@
+<div class="login-container">
+  <h2>Вхід у систему</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" formControlName="email">
+    </div>
+
+    <div class="form-group">
+      <label>Пароль</label>
+      <input type="password" formControlName="password">
+    </div>
+
+    <button type="submit" [disabled]="loginForm.invalid">Увійти</button>
+  </form>
+</div>

@@ -112,16 +112,52 @@ button:disabled {
   font-style: italic;
 }
 
-.actions {
+actions {
   display: flex;
+  flex-direction: column;
   gap: 10px;
   margin-top: auto;
 }
 
 button {
-  flex: 1;
+  width: 100%;
+  padding: 10px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  font-family: inherit;
 }
 
 .details-btn {
+  display: block;
+  width: 100%;
+  padding: 10px 0;
+  text-align: center;
   background-color: #34495e;
+  color: white !important;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+  box-sizing: border-box;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.details-btn:hover, .details-btn:focus {
+  background-color: #2c3e50;
+  color: white !important;
+  text-decoration: none;
+}
+
+.details-btn:visited {
+  color: white !important;
+}
+
+.details-btn:active {
+  transform: translateY(1px);
+  background-color: #202d3a;
 }

@@ -1,16 +1,19 @@
-<header class="main-header">
+<header class="navbar">
   <div class="logo">
-    <h1>{{ appName }}</h1>
+    <a routerLink="/">{{ appName }}</a>
   </div>
-  <nav>
-    <ul>
-      <li><a href="#">Головна</a></li>
-      <li><a href="#">Смартфони</a></li>
-      <li><a href="#">Ноутбуки</a></li>
-      <li><a href="#">Аксесуари</a></li>
-    </ul>
-  </nav>
+
+<nav>
+  <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Головна</a>
+  <a routerLink="/items" routerLinkActive="active">Смартфони</a>
+  <a routerLink="/laptops" routerLinkActive="active">Ноутбуки</a>
+  <a routerLink="/accessories" routerLinkActive="active">Аксесуари</a>
+</nav>
+
   <div class="user-actions">
-    <button>Кошик 🛒</button>
+    <button class="cart-btn">Кошик 🛒</button>
+    
+    <a *ngIf="!authService.isAuthenticated()" routerLink="/login" class="auth-btn">Увійти</a>
+    <button *ngIf="authService.isAuthenticated()" (click)="logout()" class="auth-btn logout">Вийти</button>
   </div>
 </header>
